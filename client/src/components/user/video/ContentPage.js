@@ -3,7 +3,6 @@ import { getContent } from "../../../actions/content";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Watch from "./Watch";
 
 const ContentPage = ({ getContent, content: { contents }, match }) => {
   useEffect(() => {
@@ -21,7 +20,6 @@ const ContentPage = ({ getContent, content: { contents }, match }) => {
         ?.filter((x) => x._id === match.params.id)
         ?.map((item, indx) => (
           <Fragment key={indx}>
-            <Watch url={item.videoUrl} contentId={item._id} loadPlayer={loadPlayer} handleClose={handleClose}/>
             <div
               className="hero-img insta-slide watch"
               style={{
@@ -36,7 +34,7 @@ const ContentPage = ({ getContent, content: { contents }, match }) => {
               <h5 className="hero-desc">
                 {item.category} | {item.subCategory}
               </h5>
-              <button className="btn big" onClick={()=> setLoadPlayer(true)}>Watch Now</button>
+              <Link to={`/watch/${item.videoUrl?.split("=")[1]}`} className="btn big">Watch Now</Link>
             </div>
             <div className="content-desc">
               <h2>{item.name}</h2>

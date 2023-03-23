@@ -8,6 +8,7 @@ import ScrollToTop from "../../ScrollToTop";
 import PrivateRoute from "./PrivateRoute";
 import Home from "../home/Home";
 import ContentPage from "../user/video/ContentPage";
+import Watch from "../user/video/Watch";
 
 const Routes = ({ layout: { isSidebarOpen } }) => {
   return (
@@ -19,7 +20,8 @@ const Routes = ({ layout: { isSidebarOpen } }) => {
       <ScrollToTop />
       <Switch>
         <PrivateRoute exact path="/home" component={Home} />
-        <Route exact path="/watch/:id" component={ContentPage} />
+        <Route exact path="/watch/:id" component={Watch} />
+        <Route exact path="/content/:id" component={ContentPage} />
         <Route component={NotFound} />
       </Switch>
     </div>

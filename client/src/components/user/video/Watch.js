@@ -1,25 +1,10 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ReactPlayer from "react-player/youtube";
+import { useHistory } from "react-router-dom";
 
-function useWindowSize() {
-  const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  return size;
-}
-
-const Watch = ({ url, contentId, loadPlayer, handleClose }) => {
-  const [width] = useWindowSize();
-  useEffect(() => {
-    //render
-  }, [width]);
-
+const Watch = ({ match }) => {
+  const videoId = match.params.id;
+  const history = useHistory();
   const player = useRef(null);
   const [controlls, setControlls] = useState({
     playing: true,
@@ -48,152 +33,72 @@ const Watch = ({ url, contentId, loadPlayer, handleClose }) => {
   };
 
   const handleSeekChange = (e) => {
-    //console.log(e.target.value);
     setControlls({ ...controlls, played: parseFloat(e.target.value) });
     player.current.seekTo(parseFloat(e.target.value));
   };
-
-  // const handleSeekMouseDown = (e) => {
-  //   setControlls({ ...controlls, seeking: true });
-  // };
-
-  // const handleSeekMouseUp = (e) => {
-  //   setControlls({ ...controlls, seeking: false });
-  //   player.current.seekTo(parseFloat(e.target.value));
-  // };
 
   const handleVolumeChange = (e) => {
     setControlls({ ...controlls, volume: parseFloat(e.target.value) });
   };
 
   return (
-    loadPlayer &&
-    (width >= 600 ? (
-      <div className="player-wraper insta-an">
-        <div className="close" onClick={() => handleClose(false)}>
-          x
-        </div>
-        <div className="vdo-wrpr">
-          <div className="bar-top" />
-          <div
-            className="vdo-wrap"
-            style={{
-              backgroundImage: !playing
-                ? `url('https://img.youtube.com/vi/${
-                    url?.split("=")[1]
-                  }/hqdefault.jpg')`
-                : "none",
-            }}
+    <div className="player-wraper insta-an">
+      <div className="close" onClick={history.goBack}>x</div>
+      <div className="vdo-wrpr">
+        <div className="bar-top" />
+        <div
+          className="vdo-wrap"
+          style={{
+            backgroundImage: !playing
+              ? `url('https://img.youtube.com/vi/${videoId}/hqdefault.jpg')`
+              : "none",
+            zIndex: !playing ? "999" : "-1"
+          }}
+        />
+        <ReactPlayer
+          ref={player}
+          url={`https://www.youtube.com/watch?v=${videoId}`}
+          playing={playing}
+          controls={controls}
+          light={light}
+          loop={loop}
+          playbackRate={playbackRate}
+          volume={volume}
+          muted={muted}
+          onPlay={() => setControlls({ ...controlls, playing: true })}
+          onPause={() => setControlls({ ...controlls, playing: false })}
+        />
+        <div className="cntrls">
+          <button onClick={() => handlePlayPause()}>
+            {playing ? (
+              <i className="fa fa-pause" />
+            ) : (
+              <i className="fa fa-play" />
+            )}
+          </button>
+          <input
+            type="range"
+            min={0}
+            max={0.999999}
+            step="any"
+            value={played}
+            onChange={(e) => handleSeekChange(e)}
           />
-          <ReactPlayer
-            ref={player}
-            url={url}
-            playing={playing}
-            controls={controls}
-            light={light}
-            loop={loop}
-            playbackRate={playbackRate}
-            volume={volume}
-            muted={muted}
-            onPlay={() => setControlls({...controlls, playing: true})}
-            onPause={() => setControlls({...controlls, playing: false})}
-          />
-          <div className="cntrls">
-            <button onClick={() => handlePlayPause()}>
-              {playing ? (
-                <i className="fa fa-pause" />
-              ) : (
-                <i className="fa fa-play" />
-              )}
-            </button>
+          <div className="vlum">
+            <i className="fa fa-volume-up" />
             <input
               type="range"
               min={0}
-              max={0.999999}
+              max={1}
               step="any"
-              value={played}
-              //onMouseDown={(e) => handleSeekMouseDown(e)}
-              onChange={(e) => handleSeekChange(e)}
-              //onMouseUp={(e) => handleSeekMouseUp(e)}
+              value={volume}
+              onChange={(e) => handleVolumeChange(e)}
             />
-            <div className="vlum">
-              <i className="fa fa-volume-up" />
-              <input
-                type="range"
-                min={0}
-                max={1}
-                step="any"
-                value={volume}
-                onChange={(e) => handleVolumeChange(e)}
-              />
-            </div>
           </div>
-          <div className="bar-btm" />
         </div>
+        <div className="bar-btm" />
       </div>
-    ) : (
-      <div className="player-wraper-mob insta-an">
-        <div className="close-mob" onClick={() => handleClose(false)}>
-          x
-        </div>
-        <div className="vdo-wrpr-mob">
-          <div className="bar-top-mob" />
-           <div
-            className="vdo-wrap-mob"
-            style={{
-              backgroundImage: !playing
-                ? `url('https://img.youtube.com/vi/${
-                    url?.split("=")[1]
-                  }/hqdefault.jpg')`
-                : "none",
-              zIndex: !playing ? '999' : '-999'
-            }}
-          />
-          <ReactPlayer
-            ref={player}
-            url={url}
-            playing={playing}
-            controls={controls}
-            light={light}
-            loop={loop}
-            playbackRate={playbackRate}
-            volume={volume}
-            muted={muted}
-            onPlay={() => setControlls({...controlls, playing: true})}
-            onPause={() => setControlls({...controlls, playing: false})}
-          />
-          <div className="cntrls-mob">
-            <button onClick={() => handlePlayPause()}>
-              {playing ? (
-                <i className="fa fa-pause" />
-              ) : (
-                <i className="fa fa-play" />
-              )}
-            </button>
-            <input
-              type="range"
-              min={0}
-              max={0.999999}
-              step="any"
-              value={played}
-              onChange={(e) => handleSeekChange(e)}
-            />
-            <div className="vlum-mob">
-              <i className="fa fa-volume-up" />
-              <input
-                type="range"
-                min={0}
-                max={1}
-                step="any"
-                value={volume}
-                onChange={(e) => handleVolumeChange(e)}
-              />
-            </div>
-          </div>
-          <div className="bar-btm-mob" />
-        </div>
-      </div>
-    ))
+    </div>
   );
 };
 

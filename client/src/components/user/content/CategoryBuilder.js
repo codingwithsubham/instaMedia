@@ -24,7 +24,7 @@ const CategoryBuilder = ({ categories, contents }) => {
                   <h5>
                     {item.category} | {item.subCategory}
                   </h5>
-                  <Link to={`/watch/${item._id}`} className="btn big">Watch Now</Link>
+                  <Link to={`/content/${item._id}`} className="btn big">Watch Now</Link>
                 </div>
               ))}
             </div>
