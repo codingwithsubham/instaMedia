@@ -110,7 +110,7 @@ form.login-form {
 
 .navbar {
   transition: 0.9s;
-  height: 120px;
+  height: 50px;
   background: #ffffff;
   display: flex;
   justify-content: space-between;
@@ -752,6 +752,12 @@ h2 {
 }
 
 @media only screen and (max-width: 600px) {
+  .navbar .logo {
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
   .logo img {
     width: 20%;
   }
@@ -772,8 +778,8 @@ h2 {
     align-items: flex-start;
   }
   .main-content {
-    max-width: 350px;
-    width: 350px;
+    max-width: 100%;
+    width: 100%;
   }
   .hme {
     width: 100%;
@@ -803,7 +809,7 @@ h2 {
     justify-content: center;
   }
   .cat-items-grid {
-    width: 85vw;
+    width: 95vw;
   }
   .cat-items-grid .cntnt-itm {
     width: 55%;
@@ -903,5 +909,5 @@ h2 {
     border-radius: 50%;
     display: flex;
     justify-content: center;
-}
+  }
 }
