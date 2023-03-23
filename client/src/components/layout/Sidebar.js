@@ -31,7 +31,7 @@ const Sidebar = ({
         className="sidebar"
         style={
           isSidebarOpen
-            ? { width: width <= 600 ? "70%" : "20%" }
+            ? { width: width <= 600 ? "50%" : "20%" }
             : { width: "0%" }
         }
       >

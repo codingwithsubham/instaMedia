@@ -10,6 +10,7 @@ section.container {
 .main-content {
   max-width: 900px;
   width: 100%;
+  margin-top: 100px;
 }
 
 .login-wrapper {
@@ -147,6 +148,9 @@ form.login-form {
   margin-left: 10px;
   background: #9c27b030;
   color: #cc0909;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropdown-content {
@@ -203,7 +207,7 @@ form.login-form {
   height: 100%;
   width: 20%;
   position: fixed;
-  z-index: 1;
+  z-index: 99999;
   top: 0;
   left: 0;
   background-color: #ecd6f0;
@@ -751,6 +755,10 @@ h2 {
   color: #fff;
 }
 
+.watch-page {
+  margin-bottom: 200px;
+}
+
 @media only screen and (max-width: 600px) {
   .navbar .logo {
     font-size: 20px;
@@ -780,6 +788,8 @@ h2 {
   .main-content {
     max-width: 100%;
     width: 100%;
+    margin-top: 80px;
+    overflow: hidden;
   }
   .hme {
     width: 100%;
@@ -801,9 +811,8 @@ h2 {
     width: 100%;
   }
   .hero {
-    width: 97vw;
+    width: 99%;
     height: 30vh;
-    padding: 4vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -828,6 +837,8 @@ h2 {
   }
   .vdo-wrpr-mob {
     transform: rotate(90deg);
+    width: 100vh;
+    height: 100vw;
   }
   .bar-top-mob {
     width: 100%;

@@ -37,7 +37,7 @@ const Navbar = ({
     user && (
       <div
         id="myNavbar"
-        className={`navbar ${navStyle}`}
+        className={`navbar stickey`}
         style={isSidebarOpen ? { marginLeft: "20%" } : { marginLeft: "0%" }}
       >
         <div className="nav-left">
