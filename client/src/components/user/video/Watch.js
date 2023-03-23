@@ -95,6 +95,8 @@ const Watch = ({ url, contentId, loadPlayer, handleClose }) => {
             playbackRate={playbackRate}
             volume={volume}
             muted={muted}
+            onPlay={() => setControlls({...controlls, playing: true})}
+            onPause={() => setControlls({...controlls, playing: false})}
           />
           <div className="cntrls">
             <button onClick={() => handlePlayPause()}>
@@ -136,7 +138,7 @@ const Watch = ({ url, contentId, loadPlayer, handleClose }) => {
         </div>
         <div className="vdo-wrpr-mob">
           <div className="bar-top-mob" />
-          <div
+          {!playing && <div
             className="vdo-wrap-mob"
             style={{
               backgroundImage: !playing
@@ -145,7 +147,7 @@ const Watch = ({ url, contentId, loadPlayer, handleClose }) => {
                   }/hqdefault.jpg')`
                 : "none",
             }}
-          />
+          />}
           <ReactPlayer
             ref={player}
             url={url}
@@ -156,6 +158,8 @@ const Watch = ({ url, contentId, loadPlayer, handleClose }) => {
             playbackRate={playbackRate}
             volume={volume}
             muted={muted}
+            onPlay={() => setControlls({...controlls, playing: true})}
+            onPause={() => setControlls({...controlls, playing: false})}
           />
           <div className="cntrls-mob">
             <button onClick={() => handlePlayPause()}>
