@@ -138,7 +138,7 @@ const Watch = ({ url, contentId, loadPlayer, handleClose }) => {
         </div>
         <div className="vdo-wrpr-mob">
           <div className="bar-top-mob" />
-          {!playing && <div
+           <div
             className="vdo-wrap-mob"
             style={{
               backgroundImage: !playing
@@ -146,8 +146,9 @@ const Watch = ({ url, contentId, loadPlayer, handleClose }) => {
                     url?.split("=")[1]
                   }/hqdefault.jpg')`
                 : "none",
+              zIndex: !playing ? '999' : '-999'
             }}
-          />}
+          />
           <ReactPlayer
             ref={player}
             url={url}
