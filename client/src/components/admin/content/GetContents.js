@@ -18,18 +18,22 @@ const GetContents = ({ getContent, content: { contents } }) => {
             (item, indx) =>
               item && (
                 <div className="cntnt-itm" key={indx}>
-                  <img
-                    src={`https://img.youtube.com/vi/${
-                      item.videoUrl?.split("=")[1]
-                    }/mqdefault.jpg`}
-                    alt=""
-                  />
-                  <h3 className="title">{item.name}</h3>
-                  <p>{item.uloadDate}</p>
-                  <h5>
-                    {item.category} | {item.subCategory}
-                  </h5>
-                  <p className="desc">{item.desc}</p>
+                  <div className="thumbnl">
+                    <img
+                      src={`https://img.youtube.com/vi/${
+                        item.videoUrl?.split("=")[1]
+                      }/mqdefault.jpg`}
+                      alt=""
+                    />
+                  </div>
+                  <div className="dtls">
+                    <h3 className="title">{item.name}</h3>
+                    <p>{item.uloadDate}</p>
+                    <h5>
+                      {item.category} | {item.subCategory}
+                    </h5>
+                    <p className="desc">{item.desc}</p>
+                  </div>
                 </div>
               )
           )}

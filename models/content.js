@@ -26,6 +26,27 @@ const ContentSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  isSeries: {
+    type: Boolean,
+    require: true,
+  },
+  seriseData: {
+    episodes: [
+      {
+        url: {
+          type: String,
+        },
+      },
+    ],
+  },
+  isTrailingSeson: {
+    type: Boolean,
+    require: true,
+  },
+  trailingId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "content",
+  },
   uloadDate: {
     type: String,
     require: true,

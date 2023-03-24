@@ -76,6 +76,7 @@ export const logout = () => async (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
+  window.location.reload();
 };
 
 // update Bank

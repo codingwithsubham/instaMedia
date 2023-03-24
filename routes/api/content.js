@@ -14,14 +14,19 @@ const {
 // @access Private
 router.post("/save-content", auth, async (req, res) => {
   try {
-    const { category } = req.body;
+    const { category, subCategory } = req.body;
     let dbCat = await Category.findOne({ name: category.toLowerCase() });
-    console.log(dbCat);
     if (!dbCat) {
       dbCat = new Category({
         name: category.toLowerCase(),
+        subCategory: [subCategory.toLowerCase()],
       });
       await dbCat.save();
+    } else {
+      if (!dbCat.subCategory?.includes(subCategory.toLowerCase())) {
+        dbCat.subCategory.push(subCategory.toLowerCase());
+        await dbCat.save();
+      }
     }
     const content = new Content(req.body);
     await content.save();

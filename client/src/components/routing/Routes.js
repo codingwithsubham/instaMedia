@@ -10,11 +10,15 @@ import Home from "../home/Home";
 import ContentPage from "../user/video/ContentPage";
 import Watch from "../user/video/Watch";
 
-const Routes = ({ layout: { isSidebarOpen } }) => {
+const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
   return (
     <div
       id="main"
-      style={isSidebarOpen ? { marginLeft: "20%" } : { marginLeft: "0%" }}
+      style={
+        isSidebarOpen
+          ? { marginLeft: "20%", marginTop: isAuthenticated ? "100px" : "" }
+          : { marginLeft: "0%", marginTop: isAuthenticated ? "100px" : "" }
+      }
     >
       <Alert />
       <ScrollToTop />

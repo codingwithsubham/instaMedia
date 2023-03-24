@@ -12,7 +12,7 @@ const CategoryBuilder = ({ categories, contents }) => {
             {contents
               ?.filter((x) => x.category.toLowerCase() === cat?.name)
               ?.map((item, indx) => (
-                <div className="cntnt-itm" key={indx}>
+                <div className="cnt-itm" key={indx}>
                   <img
                     src={`https://img.youtube.com/vi/${
                       item.videoUrl?.split("=")[1]
@@ -21,9 +21,6 @@ const CategoryBuilder = ({ categories, contents }) => {
                   />
                   <h3 className="title">{item.name}</h3>
                   <p>{item.uloadDate}</p>
-                  <h5>
-                    {item.category} | {item.subCategory}
-                  </h5>
                   <Link to={`/content/${item._id}`} className="btn big">Watch Now</Link>
                 </div>
               ))}
