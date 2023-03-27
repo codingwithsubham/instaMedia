@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import Home from "../home/Home";
 import ContentPage from "../user/video/ContentPage";
 import Watch from "../user/video/Watch";
+import Footer from "../layout/Footer";
 
 const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
   return (
@@ -28,6 +29,7 @@ const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
         <Route exact path="/content/:id" component={ContentPage} />
         <Route component={NotFound} />
       </Switch>
+      <Footer />
     </div>
   );
 };

@@ -83,7 +83,7 @@ const Login = ({
             </form>
 
             <div className="footer-text">
-              Copyright© {dt.getFullYear()} infomatric.
+              Copyright© {dt.getFullYear()} Happy Family Marketing.
             </div>
           </div>
         </Fragment>

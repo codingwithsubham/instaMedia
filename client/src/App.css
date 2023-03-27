@@ -388,7 +388,6 @@ div#main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin-bottom: 200px;
 }
 
 .actns {
@@ -777,7 +776,7 @@ h2 {
 }
 
 .watch-page {
-  margin-bottom: 200px;
+  margin-bottom: 20px;
 }
 
 .mult-inputs {
@@ -870,6 +869,69 @@ h2 {
   color: #fff;
 }
 
+.btm-bar {
+  width: 30%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  z-index: 999999;
+  box-shadow: 0px 0px 9px 2px #0000007d;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.btm-bar-wrap {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+.btm-bar-wrap a {
+  color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btm-bar-wrap a i {
+  font-size: 30px;
+}
+
+.btm-txt {
+  color: #f44336;
+  font-size: 12px;
+}
+
+.footer {
+  height: 200px;
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ftr-txt {
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 90%;
+  padding: 10px;
+  font-size: 13px;
+  color: #525252;
+}
+
+.footer i {
+  color: red;
+  margin: 0px 5px;
+  font-size: 20px;
+}
+
 @media only screen and (max-width: 600px) {
   .navbar .logo {
     font-size: 20px;
@@ -904,7 +966,6 @@ h2 {
   .hme {
     width: 100%;
     flex-wrap: wrap;
-    margin-bottom: 200px;
   }
   .score-indecator {
     width: 100%;
@@ -1038,10 +1099,19 @@ h2 {
   .content-desc {
     padding: 10px 5px;
   }
+  .btm-bar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    z-index: 999999;
+    box-shadow: -1px 2px 11px 0px #000000a1;
+  }
 }
 
 @media only screen and (max-width: 900px) {
   .vdo-wrpr iframe {
     height: 120vh;
-}
+  }
 }

@@ -12,6 +12,8 @@ import Navbar from "./components/layout/Navbar";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Sidebar from "./components/layout/Sidebar";
+import BottomBar from "./components/layout/BottomBar";
+import Footer from "./components/layout/Footer";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -29,6 +31,7 @@ const App = () => {
           <Fragment>
             <Navbar />
             <Sidebar />
+            <BottomBar />
             <section className="container">
               <div className="main-content">
                 <Switch>
