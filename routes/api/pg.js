@@ -5,14 +5,13 @@ const PG = require("../../models/pg");
 const {
   SERVER_ERROR,
   STATUS_CODE_500,
-  CREDIT,
-  DEBIT,
   STATUS_CODE_200,
   STATUS_CODE_400,
   BAD_REQUEST,
 } = require("../../common/constant/constants");
 const { default: axios } = require("axios");
 const User = require("../../models/user");
+const { addDays } = require("../../functions/dateCompare");
 
 // @route POST api/pg/create-order
 // @desc init payment gateway
