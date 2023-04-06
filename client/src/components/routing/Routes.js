@@ -11,6 +11,7 @@ import ContentPage from "../user/video/ContentPage";
 import Watch from "../user/video/Watch";
 import Footer from "../layout/Footer";
 import Profile from "../profile/Profile";
+import ClosePage from "../paymentGateway/ClosePage";
 
 const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
   return (
