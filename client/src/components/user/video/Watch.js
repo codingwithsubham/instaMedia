@@ -1,8 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, Fragment } from "react";
 import ReactPlayer from "react-player/youtube";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loadUser } from "../../../actions/auth";
+import { isGreaterDate } from "../../../functions/dateCompare";
 
-const Watch = ({ match }) => {
+const Watch = ({ match, auth: { user }, loadUser }) => {
+  useEffect(() => {
+    loadUser();
+  }, [loadUser]);
   const videoId = match.params.id;
   const history = useHistory();
   const player = useRef(null);
@@ -41,9 +48,25 @@ const Watch = ({ match }) => {
     setControlls({ ...controlls, volume: parseFloat(e.target.value) });
   };
 
+  if (!user?.subsEndDate || !isGreaterDate(user?.subsEndDate)) {
+    return (
+      <Fragment>
+        <div className="no-watch">
+          You are not Sbuscribed !! Please Subscribe To Enjoy Unlimited Watching
+          Experience.
+          <Link to="/profile" className="btn">
+            Subscribe Now
+          </Link>
+        </div>
+      </Fragment>
+    );
+  }
+
   return (
     <div className="player-wraper insta-an">
-      <div className="close" onClick={history.goBack}>x</div>
+      <div className="close" onClick={history.goBack}>
+        x
+      </div>
       <div className="vdo-wrpr">
         <div className="bar-top" />
         <div
@@ -52,7 +75,7 @@ const Watch = ({ match }) => {
             backgroundImage: !playing
               ? `url('https://img.youtube.com/vi/${videoId}/hqdefault.jpg')`
               : "none",
-            zIndex: !playing ? "999" : "-1"
+            zIndex: !playing ? "999" : "-1",
           }}
         />
         <ReactPlayer
@@ -102,4 +125,14 @@ const Watch = ({ match }) => {
   );
 };
 
-export default Watch;
+Watch.propTypes = {
+  auth: PropTypes.object.isRequired,
+  loadUser: PropTypes.func.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {
+  loadUser,
+})(Watch);
