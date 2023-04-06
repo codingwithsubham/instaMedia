@@ -35,7 +35,7 @@ router.post("/create-order", auth, async (req, res) => {
       amount: `${amnt}`,
       p_info: "subhscription",
       customer_name: user.name,
-      customer_email: `${user.name}@hfm.com`,
+      customer_email: `${user.name.split(" ")[0]}@hfm.com`,
       customer_mobile: user.mobile,
       redirect_url: "https://instaMedia.onrender.com/close-page",
     };

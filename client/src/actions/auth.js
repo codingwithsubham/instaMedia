@@ -36,15 +36,21 @@ export const loadUser = () => async (dispatch) => {
 // Update App Global Settings
 export const register = (body) => async (dispatch) => {
   try {
+    dispatch({
+      type: RESET_ERROR,
+    });
     const res = await axios.post("/api/auth/register", body, API_CONFIG);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
+    dispatch(setAlert("Welcome to HFM pvt. ltd.", "success"));
     dispatch(loadUser());
   } catch (err) {
+    const errors = err.response.data.errors;
     dispatch({
-      type: SETTINGS_LOADING_ERROR,
+      type: LOGIN_FAIL,
+      payload: errors,
     });
   }
 };

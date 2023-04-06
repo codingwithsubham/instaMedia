@@ -22,6 +22,7 @@ const {
   STATUS_CODE_400,
   MOBILE,
   MOBILE_REQUIRED,
+  USER_EXSISTS,
 } = require("../../common/constant/constants");
 
 // @route POST api/auth
@@ -31,6 +32,10 @@ router.post("/register", async (req, res) => {
   //pulling the data
   const { name, mobile, age, password, role } = req.body;
   try {
+    const checkUser = await User.findOne({mobile: mobile});
+    if(checkUser){
+      return res.status(STATUS_CODE_400).send({ errors: [{ msg: USER_EXSISTS }] });
+    }
     //creating a user
     const newUser = {
       mobile: mobile,

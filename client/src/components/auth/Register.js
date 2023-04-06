@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 const Register = ({
   loadUser,
   register,
-  auth: { loading, user, isAuthenticated },
+  auth: { error, user, isAuthenticated },
   setAlert,
 }) => {
   useEffect(() => {
@@ -68,6 +68,12 @@ const Register = ({
 
         <div className="insta-an">
           <form onSubmit={(e) => handleSubmit(e)} className="login-form">
+          {error &&
+            error.map((itm) => (
+              <div key={itm} className="error insta-slide">
+                {itm.msg} !! Please Enter Again !!
+              </div>
+            ))}
             {step === 1 && (
               <div className="inpt-group">
                 <label>Your Name</label>
