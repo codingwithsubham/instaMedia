@@ -28,6 +28,9 @@ const UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  subsEndDate: {
+    type: String,
+  },
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

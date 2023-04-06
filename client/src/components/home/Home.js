@@ -7,10 +7,10 @@ import CreateContent from "../admin/content/CreateContent";
 import GetContents from "../admin/content/GetContents";
 import Landing from "../user/content/Landing";
 
-const Home = ({ auth: { user } }) => {
+const Home = ({ auth: { user }, loadUser }) => {
   useEffect(() => {
     loadUser();
-  }, []);
+  }, [loadUser]);
   return (
     <Fragment>
       <div className="hme">

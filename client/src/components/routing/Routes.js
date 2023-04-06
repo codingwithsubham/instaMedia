@@ -10,6 +10,7 @@ import Home from "../home/Home";
 import ContentPage from "../user/video/ContentPage";
 import Watch from "../user/video/Watch";
 import Footer from "../layout/Footer";
+import Profile from "../profile/Profile";
 
 const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
   return (
@@ -25,8 +26,10 @@ const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
       <ScrollToTop />
       <Switch>
         <PrivateRoute exact path="/home" component={Home} />
-        <Route exact path="/watch/:id" component={Watch} />
-        <Route exact path="/content/:id" component={ContentPage} />
+        <PrivateRoute exact path="/watch/:id" component={Watch} />
+        <PrivateRoute exact path="/content/:id" component={ContentPage} />
+        <PrivateRoute exact path="/profile" component={Profile} />
+        <Route exact path="/close-page" component={ClosePage} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

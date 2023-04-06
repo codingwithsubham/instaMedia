@@ -2,25 +2,27 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loadUser } from "../../actions/auth";
+import SubsPage from "../subscription/SubsPage";
 
-const Footer = ({ auth: { isAuthenticated, user }, loadUser }) => {
-  let dt = new Date();
+const Profile = ({ auth: { user }, loadUser }) => {
   useEffect(() => {
     loadUser();
   }, [loadUser]);
-  return isAuthenticated && user && (
-    <div className="footer">
-      <div className="ftr-txt">
-        Created with <i className="fa fa-heart"></i> by Infomatric.
-      </div>
-      <div className="ftr-cpyryt">
-        Copyright© {dt.getFullYear()} Happy Family Marketing
+  return (
+    <div className="profile-page">
+      <div className="profile-dtls">
+        <h3>Hello {user?.name}</h3>
+        <p>
+          <strong>Mobile: </strong>
+          {user?.mobile}
+        </p>
+        <SubsPage user={user} />
       </div>
     </div>
   );
 };
 
-Footer.propTypes = {
+Profile.propTypes = {
   auth: PropTypes.object.isRequired,
   loadUser: PropTypes.func.isRequired,
 };
@@ -30,4 +32,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   loadUser,
-})(Footer);
+})(Profile);

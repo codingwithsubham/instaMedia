@@ -11,6 +11,7 @@ app.use(express.json({ extended: false }));
 app.use(express.static("uploads"));
 // Define Routes
 app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/pg", require("./routes/api/pg"));
 app.use("/api/media", require("./routes/api/media"));
 app.use("/api/content", require("./routes/api/content"));
 

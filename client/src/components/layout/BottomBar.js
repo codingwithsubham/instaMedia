@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { loadUser } from "../../actions/auth";
 import { Link } from "react-router-dom";
 
-const BottomBar = ({auth: { isAuthenticated, user }}) => {
+const BottomBar = ({auth: { isAuthenticated, user }, loadUser}) => {
   useEffect(() => {
     loadUser();
   }, [loadUser]);

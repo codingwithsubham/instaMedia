@@ -8,12 +8,10 @@ import setAuthToken from "./utils/setAuthToken";
 import "./App.css";
 import "./index.css";
 import Navbar from "./components/layout/Navbar";
-//import Sidebar from "./components/layout/Sidebar";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Sidebar from "./components/layout/Sidebar";
 import BottomBar from "./components/layout/BottomBar";
-import Footer from "./components/layout/Footer";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
