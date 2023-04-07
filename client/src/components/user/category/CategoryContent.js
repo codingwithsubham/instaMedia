@@ -17,28 +17,59 @@ const CategoryContent = ({ getContent, content: { contents }, match }) => {
         {sub && " : " + sub}
       </h1>
       <div className="cntnts">
-        {contents
-          ?.filter((x) => x.category.toLowerCase() === cat && x.subCategory.toLowerCase() === sub)
-          ?.map((item, indx) => (
-            <div className="cntnt-itm" key={indx}>
-              <div className="thumbnl">
-                <img
-                  src={`https://img.youtube.com/vi/${
-                    item.videoUrl?.split("=")[1]
-                  }/mqdefault.jpg`}
-                  alt=""
-                />
-              </div>
-              <div className="dtls">
-                <h3 className="title">{item.name}</h3>
-                <p>{item.uloadDate}</p>
-                <h5>
-                  {item.category} | {item.subCategory}
-                </h5>
-                <Link to={`/content/${item._id}`} className="btn big">Watch Now</Link>
-              </div>
-            </div>
-          ))}
+        {sub
+          ? contents
+              ?.filter(
+                (x) =>
+                  x.category.toLowerCase() === cat &&
+                  x.subCategory.toLowerCase() === sub
+              )
+              ?.map((item, indx) => (
+                <div className="cntnt-itm" key={indx}>
+                  <div className="thumbnl">
+                    <img
+                      src={`https://img.youtube.com/vi/${
+                        item.videoUrl?.split("=")[1]
+                      }/mqdefault.jpg`}
+                      alt=""
+                    />
+                  </div>
+                  <div className="dtls">
+                    <h3 className="title">{item.name}</h3>
+                    <p>{item.uloadDate}</p>
+                    <h5>
+                      {item.category} | {item.subCategory}
+                    </h5>
+                    <Link to={`/content/${item._id}`} className="btn big">
+                      Watch Now
+                    </Link>
+                  </div>
+                </div>
+              ))
+          : contents
+              ?.filter((x) => x.category.toLowerCase() === cat)
+              ?.map((item, indx) => (
+                <div className="cntnt-itm" key={indx}>
+                  <div className="thumbnl">
+                    <img
+                      src={`https://img.youtube.com/vi/${
+                        item.videoUrl?.split("=")[1]
+                      }/mqdefault.jpg`}
+                      alt=""
+                    />
+                  </div>
+                  <div className="dtls">
+                    <h3 className="title">{item.name}</h3>
+                    <p>{item.uloadDate}</p>
+                    <h5>
+                      {item.category} | {item.subCategory}
+                    </h5>
+                    <Link to={`/content/${item._id}`} className="btn big">
+                      Watch Now
+                    </Link>
+                  </div>
+                </div>
+              ))}
       </div>
     </div>
   );
