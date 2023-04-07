@@ -40,3 +40,4 @@ export const GET_COMMISSION = "GET_COMMISSION";
 export const CONTENT_UPLOADED = "CONTENT_UPLOADED";
 export const GET_CONTENT = "GET_CONTENT";
 export const GET_CATEGORIES = "GET_CATEGORIES";
+export const GET_SHORTS = "GET_SHORTS";

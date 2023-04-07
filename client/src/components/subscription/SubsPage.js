@@ -24,14 +24,14 @@ const SubsPage = ({ user, loadUser }) => {
           <Fragment>
             You haven't Subscribed Yet!! Subscribe now and enjoy Unlimited
             Watching Experience.
-            <br/>
+            <br />
             <button className="btn" onClick={() => setOpenPG(true)}>
               Subscribe Now
             </button>
             {openPG && (
               <PaymentGateway
                 openPG={openPG}
-                amnt={1}
+                amnt={500}
                 handleClose={handleClose}
               />
             )}

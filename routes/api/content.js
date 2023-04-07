@@ -42,7 +42,9 @@ router.post("/save-content", auth, async (req, res) => {
 // @access Private
 router.get("/get-contents", auth, async (req, res) => {
   try {
-    const contents = await Content.find({});
+    const contents = await Content.find({ category: { $ne: "shorts" } }).sort({
+      uloadDate: -1,
+    });
     return res.json(contents);
   } catch (err) {
     console.log(err);
@@ -55,8 +57,20 @@ router.get("/get-contents", auth, async (req, res) => {
 // @access Private
 router.get("/get-categories", auth, async (req, res) => {
   try {
-    const categories = await Category.find({});
+    const categories = await Category.find({ name: { $ne: "shorts" } });
     return res.json(categories);
+  } catch (err) {
+    console.log(err);
+    res.status(STATUS_CODE_500).send(SERVER_ERROR);
+  }
+});
+
+router.get("/get-shorts", auth, async (req, res) => {
+  try {
+    const contents = await Content.find({ category: "shorts" }).sort({
+      uloadDate: -1,
+    });
+    return res.json(contents);
   } catch (err) {
     console.log(err);
     res.status(STATUS_CODE_500).send(SERVER_ERROR);

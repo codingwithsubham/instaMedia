@@ -1,8 +1,14 @@
-import { CONTENT_UPLOADED, GET_CONTENT, GET_CATEGORIES } from "../actions/types";
+import {
+  CONTENT_UPLOADED,
+  GET_CONTENT,
+  GET_CATEGORIES,
+  GET_SHORTS,
+} from "../actions/types";
 
 const initialState = {
   contents: [],
   categories: [],
+  shorts: [],
 };
 
 export default function (state = initialState, action) {
@@ -12,17 +18,22 @@ export default function (state = initialState, action) {
     case CONTENT_UPLOADED:
       return {
         ...state,
-        contents: [...state.contents.reverse(), payload].reverse(),
+        contents: [...state.contents, payload],
       };
     case GET_CATEGORIES:
       return {
         ...state,
-        categories: payload.reverse(),
+        categories: payload,
+      };
+    case GET_SHORTS:
+      return {
+        ...state,
+        shorts: payload,
       };
     case GET_CONTENT:
       return {
         ...state,
-        contents: payload.reverse(),
+        contents: payload,
       };
     default:
       return state;

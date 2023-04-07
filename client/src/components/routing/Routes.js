@@ -12,6 +12,9 @@ import Watch from "../user/video/Watch";
 import Footer from "../layout/Footer";
 import Profile from "../profile/Profile";
 import ClosePage from "../paymentGateway/ClosePage";
+import CategoryPage from "../user/category/CategoryPage";
+import CategoryContent from "../user/category/CategoryContent";
+import Shorts from "../user/shorts/Shorts";
 
 const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
   return (
@@ -30,6 +33,10 @@ const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
         <PrivateRoute exact path="/watch/:id" component={Watch} />
         <PrivateRoute exact path="/content/:id" component={ContentPage} />
         <PrivateRoute exact path="/profile" component={Profile} />
+        <Route exact path="/category" component={CategoryPage} />
+        <Route exact path="/shorts" component={Shorts} />
+        <Route exact path="/videos/:cat/:sub" component={CategoryContent} />
+        <Route exact path="/videos/:cat" component={CategoryContent} />
         <Route exact path="/close-page" component={ClosePage} />
         <Route component={NotFound} />
       </Switch>

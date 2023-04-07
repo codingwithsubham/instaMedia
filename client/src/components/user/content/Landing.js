@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import HeroSlider from "../../layout/HeroSlider";
 import CategoryBuilder from "./CategoryBuilder";
+import CategoryPage from "../category/CategoryPage"
 
 const Landing = ({
   getContent,
@@ -22,6 +23,9 @@ const Landing = ({
       </div>
       <div className="categories">
         <CategoryBuilder categories={categories} contents={contents} />
+      </div>
+      <div className="gerna">
+        <CategoryPage />
       </div>
     </div>
   );

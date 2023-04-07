@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CONTENT_UPLOADED, GET_CATEGORIES, GET_CONTENT } from "./types";
+import { CONTENT_UPLOADED, GET_CATEGORIES, GET_CONTENT, GET_SHORTS } from "./types";
 import { setAlert } from "./alert";
 const { API_CONFIG } = require("../common/constants");
 
@@ -40,5 +40,18 @@ export const getCategories = () => async (dispatch) => {
     });
   } catch (err) {
     dispatch(setAlert("Pulling Category Fail !!", "fail"));
+  }
+};
+
+// get shorts
+export const getShorts = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/content/get-shorts", API_CONFIG);
+    dispatch({
+      type: GET_SHORTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch(setAlert("Content Get Fail !!", "fail"));
   }
 };
