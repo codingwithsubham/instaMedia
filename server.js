@@ -2,11 +2,14 @@ const express = require("express");
 const path = require("path");
 const connectDB = require("./config/db");
 const app = express();
+const bodyParser = require('body-parser');
 
 // Connect Database
 connectDB();
 // Init Middleware
 app.use(express.json({ extended: false }));
+//defining body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
 // Defining pictures folder static
 app.use(express.static("uploads"));
 // Define Routes

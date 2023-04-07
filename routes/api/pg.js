@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
-const PG = require("../../models/pg");
 const {
   SERVER_ERROR,
   STATUS_CODE_500,
@@ -13,7 +12,7 @@ const { default: axios } = require("axios");
 const User = require("../../models/user");
 const { addDays } = require("../../functions/dateCompare");
 
-// @route POST api/pg/create-order
+// @route POST api/pg/create-order`
 // @desc init payment gateway
 // @access Private
 router.post("/create-order", auth, async (req, res) => {
@@ -21,16 +20,9 @@ router.post("/create-order", auth, async (req, res) => {
     const user = req.user.userData;
     const { amnt } = req.body;
 
-    const pg = new PG({
-      user: req.user.id,
-      amnt: amnt,
-    });
-
-    await pg.save();
-
     const postData = {
       key: "957a9bca-d128-42e2-9918-1c00107c078a",
-      client_txn_id: pg._id,
+      client_txn_id: user._id,
       amount: `${amnt}`,
       p_info: "subhscription",
       customer_name: user.name,
@@ -66,9 +58,8 @@ router.post("/order-success", async (req, res) => {
       30
     );
     const { client_txn_id } = req.body;
-    const pg = await PG.findById(client_txn_id);
-    let user = await User.findById(pg.user);
-    if (pg) {
+    let user = await User.findById(client_txn_id);
+    if (user) {
       user.subsEndDate = endndDate.toLocaleString("en-US", {
         timeZone: "Asia/Kolkata",
       });
