@@ -1137,6 +1137,14 @@ a.btn {
   height: 90vh;
 }
 
+.pg-element p {
+  width: 100%;
+  display: flex;
+  height: -webkit-fill-available;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (max-width: 600px) {
   .shorts {
     width: 100%;

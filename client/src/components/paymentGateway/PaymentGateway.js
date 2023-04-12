@@ -14,6 +14,7 @@ const PaymentGateway = ({
   if (!paymentLink && openPG) {
     requestPaymentGateway(amnt).then((res) => {
       setPaymentLink(res?.data?.payment_url);
+      window.location.href = res?.data?.payment_url;
     });
   }
 
@@ -24,7 +25,7 @@ const PaymentGateway = ({
           <div className="close-icon" onClick={handleClose}>
             X
           </div>
-          <iframe title="Payment Gateway" src={paymentLink} />
+          <p>Payment Initiated. Do not Close or Go Back.</p>
         </div>
       </div>
     </div>
