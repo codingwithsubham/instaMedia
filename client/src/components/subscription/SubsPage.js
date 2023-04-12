@@ -31,7 +31,7 @@ const SubsPage = ({ user, loadUser }) => {
             {openPG && (
               <PaymentGateway
                 openPG={openPG}
-                amnt={1}
+                amnt={500}
                 handleClose={handleClose}
               />
             )}
