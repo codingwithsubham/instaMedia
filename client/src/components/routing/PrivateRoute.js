@@ -1,7 +1,7 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 const PrivateRoute = ({
   component: Component,
@@ -10,9 +10,10 @@ const PrivateRoute = ({
 }) => (
   <Route
     {...rest}
-    render={props =>
-      !isAuthenticated? (
-        <Redirect to='/' />
+    render={(props) =>
+      !isAuthenticated && !localStorage.token ? (
+        <Redirect to="/" />
+        
       ) : (
         <Component {...props} />
       )
@@ -21,11 +22,11 @@ const PrivateRoute = ({
 );
 
 PrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

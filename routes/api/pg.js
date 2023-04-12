@@ -62,17 +62,25 @@ router.post("/order-success", async (req, res) => {
       date.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
       30
     );
-    const { client_txn_id } = req.body;
-    const pg = await PG.findById(client_txn_id);
-    let user = await User.findById(pg.user);
-    if (pg) {
-      user.subsEndDate = endndDate.toLocaleString("en-US", {
-        timeZone: "Asia/Kolkata",
-      });
-      await user.save();
-      return res.status(STATUS_CODE_200).json({ success: true });
+    const { client_txn_id, status } = req.body;
+    if (status !== "failure") {
+      const pg = await PG.findById(client_txn_id);
+      let user = await User.findById(pg.user);
+      if (pg) {
+        user.subsEndDate = endndDate.toLocaleString("en-US", {
+          timeZone: "Asia/Kolkata",
+        });
+        await user.save();
+        return res.status(STATUS_CODE_200).json({ success: true });
+      } else {
+        return res
+          .status(STATUS_CODE_400)
+          .json({ errors: [{ msg: BAD_REQUEST }] });
+      }
     } else {
-      res.status(STATUS_CODE_400).json({ errors: [{ msg: BAD_REQUEST }] });
+      return res
+        .status(STATUS_CODE_400)
+        .json({ errors: [{ msg: BAD_REQUEST }] });
     }
   } catch (error) {
     console.log(error);

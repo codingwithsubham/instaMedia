@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   LOGIN_SUCCESS,
   USER_LOADED,
-  //AUTH_ERROR,
+  AUTH_ERROR,
   LOGOUT,
   SETTINGS_LOADING_ERROR,
   LOGIN_FAIL,
@@ -25,10 +25,10 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    // dispatch({
-    //   type: AUTH_ERROR,
-    //   payload: err,
-    // });
+    dispatch({
+      type: AUTH_ERROR,
+      payload: err,
+    });
   }
 };
 

@@ -14,7 +14,7 @@ const Home = ({ auth: { user }, loadUser }) => {
   return (
     <Fragment>
       <div className="hme">
-        {user.role === "admin" ? (
+        {user?.role === "admin" ? (
           <Fragment>
             <div className="hme-content-item">
               <CreateContent />
