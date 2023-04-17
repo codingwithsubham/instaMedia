@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import HeroSlider from "../../layout/HeroSlider";
 import CategoryBuilder from "./CategoryBuilder";
 import CategoryPage from "../category/CategoryPage"
+import SubCategoryBuilder from "./SubCategoryBuilder";
 
 const Landing = ({
   getContent,
@@ -23,6 +24,9 @@ const Landing = ({
       </div>
       <div className="categories">
         <CategoryBuilder categories={categories} contents={contents} />
+      </div>
+      <div className="sub-categories">
+        <SubCategoryBuilder categories={categories} contents={contents} />
       </div>
       <div className="gerna">
         <CategoryPage />

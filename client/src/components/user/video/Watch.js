@@ -1,12 +1,24 @@
-import React, { useState, useRef, useEffect, Fragment } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  //  Fragment
+} from "react";
 import ReactPlayer from "react-player/youtube";
-import { Link, useHistory } from "react-router-dom";
+import {
+  //Link,
+  useHistory,
+} from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loadUser } from "../../../actions/auth";
-import { isGreaterDate } from "../../../functions/dateCompare";
+//import { isGreaterDate } from "../../../functions/dateCompare";
 
-const Watch = ({ match, auth: { user }, loadUser }) => {
+const Watch = ({
+  match,
+  // auth: { user },
+  loadUser,
+}) => {
   useEffect(() => {
     loadUser();
   }, [loadUser]);
@@ -48,19 +60,19 @@ const Watch = ({ match, auth: { user }, loadUser }) => {
     setControlls({ ...controlls, volume: parseFloat(e.target.value) });
   };
 
-  if (!user?.subsEndDate || !isGreaterDate(user?.subsEndDate)) {
-    return (
-      <Fragment>
-        <div className="no-watch">
-          You are not Sbuscribed !! Please Subscribe To Enjoy Unlimited Watching
-          Experience.
-          <Link to="/profile" className="btn">
-            Subscribe Now
-          </Link>
-        </div>
-      </Fragment>
-    );
-  }
+  // if (!user?.subsEndDate || !isGreaterDate(user?.subsEndDate)) {
+  //   return (
+  //     <Fragment>
+  //       <div className="no-watch">
+  //         You are not Sbuscribed !! Please Subscribe To Enjoy Unlimited Watching
+  //         Experience.
+  //         <Link to="/profile" className="btn">
+  //           Subscribe Now
+  //         </Link>
+  //       </div>
+  //     </Fragment>
+  //   );
+  // }
 
   return (
     <div className="player-wraper insta-an">
@@ -79,6 +91,8 @@ const Watch = ({ match, auth: { user }, loadUser }) => {
           }}
         />
         <ReactPlayer
+          width={"100%"}
+          height={"100%"}
           ref={player}
           url={`https://www.youtube.com/watch?v=${videoId}`}
           playing={playing}

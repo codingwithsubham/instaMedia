@@ -1,12 +1,18 @@
-import React, { useState, useRef, useEffect, Fragment } from "react";
+import React, { useState, useRef, useEffect, 
+//  Fragment 
+} from "react";
 import ReactPlayer from "react-player/youtube";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loadUser } from "../../../actions/auth";
-import { isGreaterDate } from "../../../functions/dateCompare";
+//import { isGreaterDate } from "../../../functions/dateCompare";
 
-const ShortsWatch = ({ shortId, auth: { user }, loadUser }) => {
+const ShortsWatch = ({
+  shortId,
+  //auth: { user },
+  loadUser,
+}) => {
   useEffect(() => {
     loadUser();
   }, [loadUser]);
@@ -22,43 +28,36 @@ const ShortsWatch = ({ shortId, auth: { user }, loadUser }) => {
     loop: false,
   });
 
-  const {
-    playing,
-    controls,
-    light,
-    volume,
-    muted,
-    playbackRate,
-    loop,
-  } = controlls;
+  const { playing, controls, light, volume, muted, playbackRate, loop } =
+    controlls;
 
-  if (!user?.subsEndDate || !isGreaterDate(user?.subsEndDate)) {
-    return (
-      <Fragment>
-        <div className="no-watch">
-          You are not Sbuscribed !! Please Subscribe To Enjoy Unlimited Watching
-          Experience.
-          <Link to="/profile" className="btn">
-            Subscribe Now
-          </Link>
-        </div>
-      </Fragment>
-    );
-  }
+  // if (!user?.subsEndDate || !isGreaterDate(user?.subsEndDate)) {
+  //   return (
+  //     <Fragment>
+  //       <div className="no-watch">
+  //         You are not Sbuscribed !! Please Subscribe To Enjoy Unlimited Watching
+  //         Experience.
+  //         <Link to="/profile" className="btn">
+  //           Subscribe Now
+  //         </Link>
+  //       </div>
+  //     </Fragment>
+  //   );
+  // }
 
   return (
     <div className="shorts insta-an">
-        <ReactPlayer
-          ref={player}
-          url={`https://www.youtube.com/watch?v=${videoId}`}
-          playing={playing}
-          controls={controls}
-          light={light}
-          loop={loop}
-          playbackRate={playbackRate}
-          volume={volume}
-          muted={muted}
-        />
+      <ReactPlayer
+        ref={player}
+        url={`https://www.youtube.com/watch?v=${videoId}`}
+        playing={playing}
+        controls={controls}
+        light={light}
+        loop={loop}
+        playbackRate={playbackRate}
+        volume={volume}
+        muted={muted}
+      />
     </div>
   );
 };
