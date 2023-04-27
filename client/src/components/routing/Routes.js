@@ -15,6 +15,9 @@ import ClosePage from "../paymentGateway/ClosePage";
 import CategoryPage from "../user/category/CategoryPage";
 import CategoryContent from "../user/category/CategoryContent";
 import Shorts from "../user/shorts/Shorts";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsConditions from "../pages/TermsConditions";
+import AboutUs from "../pages/AboutUs";
 
 const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
   return (
@@ -33,11 +36,14 @@ const Routes = ({ layout: { isSidebarOpen }, auth: { isAuthenticated } }) => {
         <PrivateRoute exact path="/watch/:id" component={Watch} />
         <PrivateRoute exact path="/content/:id" component={ContentPage} />
         <PrivateRoute exact path="/profile" component={Profile} />
-        <Route exact path="/category" component={CategoryPage} />
-        <Route exact path="/shorts" component={Shorts} />
-        <Route exact path="/videos/:cat/:sub" component={CategoryContent} />
-        <Route exact path="/videos/:cat" component={CategoryContent} />
+        <PrivateRoute exact path="/category" component={CategoryPage} />
+        <PrivateRoute exact path="/shorts" component={Shorts} />
+        <PrivateRoute exact path="/videos/:cat/:sub" component={CategoryContent} />
+        <PrivateRoute exact path="/videos/:cat" component={CategoryContent} />
         <Route exact path="/close-page" component={ClosePage} />
+        <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+        <Route exact path="/terms-conditions" component={TermsConditions} />
+        <Route exact path="/about-us" component={AboutUs} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
