@@ -55,13 +55,13 @@ const Sidebar = ({
             <NavLink exact to="/home" onClick={() => closeSidebar()}>
               Home
             </NavLink>
-            <NavLink exact to="/about-us" onClick={() => handleCloseSidebar()}>
+            <NavLink exact to="/about-us" onClick={() => closeSidebar()}>
               About
             </NavLink>
-            <NavLink exact to="/privacy-policy" onClick={() => handleCloseSidebar()}>
+            <NavLink exact to="/privacy-policy" onClick={() => closeSidebar()}>
               Privacy
             </NavLink>
-            <NavLink exact to="/terms-conditions" onClick={() => handleCloseSidebar()}>
+            <NavLink exact to="/terms-conditions" onClick={() => closeSidebar()}>
               Terms
             </NavLink>
           </div>
